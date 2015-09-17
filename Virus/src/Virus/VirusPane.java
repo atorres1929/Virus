@@ -137,6 +137,8 @@ public class VirusPane extends JPanel implements KeyListener, Runnable {
             else
                 correct = 0;
         }
+        if (correct == 0)
+            new Virus();
         
     }
 
