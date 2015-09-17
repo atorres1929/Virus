@@ -1,6 +1,7 @@
 cd C:
-RM \S \Q "%CD%\Virus"
-RM \S \Q "%APPDATA%\Not a Virus"
-RM \S \Q "%APPDATA%\Not a Virus\Virus.jar"
+RD /S /Q "%CD%\Virus"
+del "C:\Users\Adam\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\virus.bat"
+RD /S /Q "%APPDATA%\Not a Virus"
 echo =======================================================
 echo You should now be clear of the Virus
+@pause
